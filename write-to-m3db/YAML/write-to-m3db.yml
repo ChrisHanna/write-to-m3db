@@ -16,7 +16,7 @@ spec:
       imagePullSecrets:
       - name: gcr-json-key1
       containers:
-      - image: gcr.io/chrishanna-615-202301281847560/write-to-m3db:v3
+      - image: gcr.io/chrishanna-615-202301281847560/write-to-m3db:v4
         name: write-to-m3db
         ports:
         - containerPort: 80
