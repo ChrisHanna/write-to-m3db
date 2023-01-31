@@ -14,7 +14,7 @@ spec:
         app: write-to-m3db
     spec:
       imagePullSecrets:
-      - name: gcr-json-key
+      - name: gcr-json-key1
       containers:
       - image: gcr.io/chrishanna-615-202301281847560/write-to-m3db
         name: write-to-m3db
