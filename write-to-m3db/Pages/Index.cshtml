@@ -24,9 +24,9 @@ function pollServer()
 {
     if (isActive)
     {
-        start = Math.round(new Date().getTime()/1000) - 120000000000;
+        start = Math.round(new Date().getTime()/1000) - 60000;
         end = Math.round(new Date().getTime()/1000);
-        url = 'http://10.64.13.7:7201/api/v1/query_range?query=third_avenue&start=$(' + start + ')&end=$(' + end + ')&step=1s"'
+        url = 'http://10.64.13.7:7201/api/v1/query_range?query=third_avenue&start=' + start + '&end=' + end + '&step=1s';
         console.log(url);
         window.setTimeout(function () {
             $.ajax({
