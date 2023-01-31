@@ -2,9 +2,12 @@
 kind: Service
 metadata:
   name: write-to-m3db
+  annotations:
+    cloud.google.com/neg: '{"ingress":true}'
 spec:
   ports:
   - port: 80
     targetPort: 80
   selector:
     app: write-to-m3db
+  type: LoadBalancer
