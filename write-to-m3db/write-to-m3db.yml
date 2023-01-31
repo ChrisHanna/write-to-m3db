@@ -1,0 +1,28 @@
+﻿apiVersion: apps/v1beta1 # for versions before 1.8.0 use apps/v1beta1
+kind: Deployment
+metadata:
+  name: write-to-m3db
+spec:
+  selector:
+    matchLabels:
+      app: write-to-m3db
+  replicas: 2 # tells deployment to run # pods matching the template
+  template: # create pods using pod definition in this template
+    metadata:
+      labels:
+        app: write-to-m3db
+    spec:
+      containers:
+      - name: write-to-m3db
+        image: gcr.io/chrishanna-615-202301281847560/write-to-m3db:v1
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 80
+          name: server
+        resources:
+          requests:
+            cpu: 100m
+            memory: 128Mi
+          limits:
+            cpu: 250m
+            memory: 256Mi
