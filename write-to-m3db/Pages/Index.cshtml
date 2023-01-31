@@ -4,7 +4,44 @@
     ViewData["Title"] = "Home page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
+<div class="text-center" id="number">
+    <h1 class="display-4">Welcome Chris</h1>
     <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
 </div>
+
+
+@section Scripts{
+    <script>
+    var isActive = true;
+
+$().ready(function () {
+    //EITHER USE A GLOBAL VAR OR PLACE VAR IN HIDDEN FIELD
+    //IF FOR WHATEVER REASON YOU WANT TO STOP POLLING
+    pollServer();
+});
+
+function pollServer()
+{
+    if (isActive)
+    {
+        d = Math.round(new Date().getTime()/1000);
+        url = 'http://10.64.13.7:7201/api/v1/query_range?query=third_avenue&start=$(' + d + '  "+%s" "3600 seconds ago")&end=$( ' + d + ' +%s )&step=1s"'
+        console.log(url);
+        window.setTimeout(function () {
+            $.ajax({
+                url: url,
+                type: "GET",
+                success: function (result) {
+                    //SUCCESS LOGIC
+                    pollServer();
+                    $("#number").html(result);
+                },
+                error: function () {
+                    //ERROR HANDLING
+                    pollServer();
+                }});
+        }, 2500);
+    }
+}
+</script>
+} 
